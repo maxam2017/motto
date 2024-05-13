@@ -15,10 +15,10 @@ export async function toggle() {
   const liked = cookies().get("liked")?.value === "true";
 
   if (liked) {
-    redisClient.incrby("likes", -1);
+    await redisClient.incrby("likes", -1);
     cookies().set("liked", "false", { maxAge: ONE_YEAR });
   } else {
-    redisClient.incrby("likes", 1);
+    await redisClient.incrby("likes", 1);
     cookies().set("liked", "true", { maxAge: ONE_YEAR });
   }
 
