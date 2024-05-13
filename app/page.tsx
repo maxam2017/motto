@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 
+import { useFormState } from "react-dom";
+
 import { countLikes, toggle } from "@/actions/like";
 import { formatNumber } from "@/utils/formatNumber";
 
@@ -17,9 +19,11 @@ export default async function Page() {
         &quot;Be kind and patient. <br />
         Try to understand those you don&apos;t understand.&quot;
       </div>
-      <form className="flex flex-col items-center" action={toggle}>
-        <LikeButton className="flex items-center gap-2 group" liked={liked} />
-      </form>
+      <LikeButton
+        className="flex items-center gap-2 group"
+        liked={liked}
+        action={toggle}
+      />
       <span className="text-xs mt-3 text-gray-500">
         {liked
           ? `You and ${formatNumber(likeCount - 1)} others liked this`

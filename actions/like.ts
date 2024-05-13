@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 import { createRedisClient } from "@/utils/redis";
@@ -21,8 +20,6 @@ export async function toggle() {
     await redisClient.incrby("likes", 1);
     cookies().set("liked", "true", { maxAge: ONE_YEAR });
   }
-
-  revalidatePath("/");
 }
 
 export async function countLikes() {
