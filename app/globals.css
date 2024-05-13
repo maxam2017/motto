@@ -74,7 +74,6 @@
   }
   svg #heart {
     transform-origin: center;
-    transition: all 0.3s;
   }
   svg #main-circ {
     transform-origin: 29.5px 29.5px;
@@ -82,7 +81,7 @@
 
   [data-liked="true"] > svg #heart {
     transform: scale(0.2);
-    fill: #E2264D;
+    fill: #e2264d;
     animation: animateHeart 0.3s linear forwards 0.25s;
   }
   [data-liked="true"] > svg #main-circ {
@@ -217,44 +216,44 @@
     40% {
       transform: scale(10);
       opacity: 1;
-      fill: #DD4688;
+      fill: #dd4688;
     }
     55% {
       transform: scale(11);
       opacity: 1;
-      fill: #D46ABF;
+      fill: #d46abf;
     }
     65% {
       transform: scale(12);
       opacity: 1;
-      fill: #CC8EF5;
+      fill: #cc8ef5;
     }
     75% {
       transform: scale(13);
       opacity: 1;
       fill: transparent;
-      stroke: #CC8EF5;
+      stroke: #cc8ef5;
       stroke-width: 0.5;
     }
     85% {
       transform: scale(17);
       opacity: 1;
       fill: transparent;
-      stroke: #CC8EF5;
+      stroke: #cc8ef5;
       stroke-width: 0.2;
     }
     95% {
       transform: scale(18);
       opacity: 1;
       fill: transparent;
-      stroke: #CC8EF5;
+      stroke: #cc8ef5;
       stroke-width: 0.1;
     }
     100% {
       transform: scale(19);
       opacity: 1;
       fill: transparent;
-      stroke: #CC8EF5;
+      stroke: #cc8ef5;
       stroke-width: 0;
     }
   }
