@@ -1,8 +1,18 @@
+import { cookies } from "next/headers";
+
 import { ScrollText } from "lucide-react";
+
+import { countLikes, toggle } from "@/actions/like";
+import { formatNumber } from "@/utils/formatNumber";
 
 import { LikeButton } from "../components/like-button";
 
-export default function Page() {
+export const runtime = "edge";
+
+export default async function Page() {
+  const liked = cookies().get("liked")?.value === "true";
+  const likeCount = await countLikes();
+
   return (
     <>
       <header className="px-6 py-4 text-black">
@@ -15,11 +25,16 @@ export default function Page() {
           &quot;Be kind and patient. <br />
           Try to understand those you don&apos;t understand.&quot;
         </div>
-        <LikeButton
-          className="flex items-center gap-2 group"
-          likeCount={0}
-          liked={false}
-        />
+        <form className="flex flex-col items-center" action={toggle}>
+          <LikeButton className="flex items-center gap-2 group" liked={liked} />
+        </form>
+        <span className="text-xs mt-3 text-gray-500">
+          {liked
+            ? `You and ${formatNumber(likeCount - 1)} others liked this`
+            : `
+          ${formatNumber(likeCount)} ${likeCount === 1 ? "person" : "people"} liked this
+        `}
+        </span>
       </div>
     </>
   );
