@@ -1,8 +1,10 @@
 "use client";
 
-import { toggle } from "@/actions/like";
+import { Loader2 } from "lucide-react";
+import { useFormStatus } from "react-dom";
+
 import { Button } from "@/components/ui/button";
-import { formatNumber } from "@/utils/formatNumber";
+import { cn } from "@/utils/cn";
 
 import { LikeIcon } from "./like-icon";
 
@@ -12,10 +14,22 @@ interface LikeButtonProps {
 }
 
 export function LikeButton({ className, liked }: LikeButtonProps) {
+  const { pending } = useFormStatus();
+
   return (
-    <Button className={className} variant="outline" data-liked={liked}>
-      <LikeIcon className="w-8 h-8 -mx-1 group-hover:scale-105" />
-      {liked ? "Liked" : "Like"}
+    <Button
+      className={cn("w-[100px]", className)}
+      variant="outline"
+      data-liked={liked}
+    >
+      {pending ? (
+        <Loader2 className="w-5 h-5 text-gray-500 animate-spin" />
+      ) : (
+        <>
+          <LikeIcon className="w-8 h-8 -mx-1 group-hover:scale-105" />
+          {liked ? "Liked" : "Like"}
+        </>
+      )}
     </Button>
   );
 }
